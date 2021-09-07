@@ -5,8 +5,8 @@
     "meeting_time": [ "2021-09-08T08:45:00", "2021-09-08T11:30:00" ]
   },
   {
-    "course":"XI H ACCOUNTANCY",
+    "course":"Foo Bar Two",
     "meeting_title": "Foo Bar - Economics",
-    "meeting_time": [ "2021-09-08T08:00:00" ]
+    "meeting_time": [ "2021-09-09T08:00:00" ]
   }
 ]
