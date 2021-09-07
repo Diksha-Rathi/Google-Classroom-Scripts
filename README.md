@@ -38,17 +38,17 @@ Execute the script (if student ids are already populated in CSV, then `student.c
 ### Script 02 - [PostMeetingLinkInAnnouncement.py](https://github.com/Diksha-Rathi/Google-Classroom-Scripts/blob/main/Scripts/02/PostMeetingLinkInAnnouncement.py)
 
 **Problem Statement** - 
-Create Zoom link for every class and post in the announcement feed everyday as per input time table.
-
-**How to execute script?**
-
-Prerequisite - CSV file [TimeTable.json](https://github.com/Diksha-Rathi/Google-Classroom-Scripts/blob/main/Scripts/02/TimeTable.json) with class schedule updated. Add announcement to the classroom with below format-
+Create Zoom link for every class and post in the announcement feed everyday as per input time table. Add announcement to the classroom with below format-
 
 * Title - \<zoom meeting title>
 * Time - \<time of the class>
 * Join Zoom meeting - \<Link of the zoom meeting>
 * ID - \<meeting id>
 * Passcode - \<meeting passcode>
+
+**How to execute script?**
+
+Prerequisite - CSV file [TimeTable.json](https://github.com/Diksha-Rathi/Google-Classroom-Scripts/blob/main/Scripts/02/TimeTable.json) with class schedule updated. 
 
 Script changes - Edit the following fields:
  ```
