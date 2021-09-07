@@ -30,14 +30,14 @@ class Course(object):
     def __init__(self, service):
         self.service = service.courses()
 
-    def list_courses(self):
+    def list(self):
         service = self.service
         response = service.list().execute()
         courses = response.get('courses', [])
         return courses
 
     def get_course_by_name(self, name):
-        courses = self.list_courses()
+        courses = self.list()
         result = next((course for course in courses if course['name'].lower() == name), None)
         if result == None:
             raise Exception('Course does not exist.')
@@ -48,7 +48,7 @@ class Student(object):
     def __init__(self, service):
         self.service = service.courses().students()
 
-    def list_students(self, course_id):
+    def list(self, course_id):
         service = self.service
         students = []
         page_token = None
@@ -63,7 +63,7 @@ class Student(object):
         return students
 
     def create_csv(self, course_id):
-        students = self.list_students(course_id)
+        students = self.list(course_id)
 
         # create dict with full name as key to get O(1) access time
         records = {}
@@ -91,14 +91,14 @@ class Topic(object):
     def __init__(self, service):
         self.service = service.courses().topics()
 
-    def list_topics(self, course_id):
+    def list(self, course_id):
         service = self.service
         results = service.list(courseId=course_id).execute() 
         topics = results.get('topic',[])
         return topics
 
-    def create_topic(self, course_id, name):
-        topics = self.list_topics(course_id)
+    def create(self, course_id, name):
+        topics = self.list(course_id)
         exists = next((topic for topic in topics if topic['name'].lower() == name.lower()), None)
         if exists == None:
             service = self.service
@@ -131,9 +131,9 @@ class CourseWork(object):
                     ]
                 }
             }
-            self.create_course_work_matrial(course_id, request)
+            self.create(course_id, request)
 
-    def create_course_work_matrial(self, course_id, request):
+    def create(self, course_id, request):
         service = self.service
         request = service.create(courseId=course_id, body=request).execute()
 
@@ -161,7 +161,7 @@ def main():
         course_work = CourseWork(service)
 
         course_id = course.get_course_by_name(COURSE.lower())
-        topic_id = topic.create_topic(course_id, TOPIC)
+        topic_id = topic.create(course_id, TOPIC)
 
         # One time - populate csv with student ids
         student.create_csv(course_id)
